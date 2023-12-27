@@ -9,10 +9,14 @@ import (
 
 const nums string = "9876543210"
 
-var flagvar int
+var (
+	intFlagVar  int
+	boolFlagVar bool
+)
 
 func init() {
-	flag.IntVar(&flagvar, "target", 200, "Please input int target to get the solution")
+	flag.IntVar(&intFlagVar, "target", 200, "Please input int target to get the solution")
+	flag.BoolVar(&boolFlagVar, "all", false, "Please set this flag if you want see all solutions")
 }
 
 func FindSolution(target int) string {
@@ -46,9 +50,11 @@ func FindSolution(target int) string {
 
 	backtrack(nums, "")
 
-	//for i := 0; i < len(result); i++ {
-	//	fmt.Println(result[i])
-	//}
+	if boolFlagVar {
+		for i := 0; i < len(result); i++ {
+			fmt.Println(result[i])
+		}
+	}
 
 	if len(result) == 0 {
 		return "Solution does not exist"
@@ -98,6 +104,8 @@ func Solve(example string) (int, error) {
 func main() {
 	flag.Parse()
 
-	solution := FindSolution(flagvar)
-	fmt.Println(solution)
+	solution := FindSolution(intFlagVar)
+	if !boolFlagVar {
+		fmt.Println(solution)
+	}
 }
