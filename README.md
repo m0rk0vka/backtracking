@@ -11,3 +11,7 @@ go run main.go
 ```
 go run main.go --target=300
 ```
+Так же можно посмотреть все возможные решения указав флан `all`:
+```
+go run main.go --all
+```
