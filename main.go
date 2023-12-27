@@ -1,12 +1,19 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"strconv"
 )
 
 const nums string = "9876543210"
+
+var flagvar int
+
+func init() {
+	flag.IntVar(&flagvar, "target", 200, "Please input int target to get the solution")
+}
 
 func FindSolution(target int) string {
 	var result []string
@@ -44,7 +51,7 @@ func FindSolution(target int) string {
 	//}
 
 	if len(result) == 0 {
-		return ""
+		return "Solution does not exist"
 	}
 
 	return result[0]
@@ -89,6 +96,8 @@ func Solve(example string) (int, error) {
 }
 
 func main() {
-	solution := FindSolution(200)
+	flag.Parse()
+
+	solution := FindSolution(flagvar)
 	fmt.Println(solution)
 }
